@@ -1,0 +1,454 @@
+// Responsywnosc z wykorzystaniem Mixin..
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+// Zmienne w Sass
+
+$darkColor: #2f2d52;
+
+.formContainer {
+  background-color: #a7bcff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    color: #5d5b8d;
+    font-weight: bold;
+    font-size: 3rem;
+  }
+
+  .title {
+    color: #5d5b8d;
+    font-size: 1.8rem;
+  }
+
+  .formWrapper {
+    background-color: white;
+    padding: 20px 60px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    @include mobile {
+      width: 80%;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+
+      input {
+        padding: 15px;
+        border: none;
+        outline: none;
+        width: 250px;
+        border-bottom: 1px solid #a7bcff;
+        font-size: 1.6rem;
+
+        &::placeholder {
+          color: rgb(175, 175, 175);
+        }
+        &:hover::placeholder,
+        &:focus::placeholder {
+          color: rgb(195, 195, 195);
+        }
+      }
+
+      button {
+        background-color: #7b96ec;
+        color: white;
+        margin-top: 25px;
+        padding: 10px;
+        font-weight: 100;
+        font-size: 1.5rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background: #97a9e4;
+        }
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 15px;
+        color: #8da4f1;
+        font-size: 1.8rem;
+        width: 250px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          color: #acbcee;
+        }
+
+        img {
+          width: 32px;
+        }
+      }
+    }
+
+    p {
+      color: #5d5b8d;
+      font-size: 12px;
+      margin-top: 10px;
+      @include mobile {
+        font-size: 1rem;
+      }
+
+      a:link,
+      a:visited {
+        transition: all 0.3s ease-in-out;
+        color: #5d5b8d;
+        font-size: 12px;
+        text-decoration: none;
+        @include mobile {
+          font-size: 1rem;
+        }
+      }
+
+      a:hover,
+      a:active {
+        color: #c9c8d8;
+      }
+    }
+  }
+}
+
+.home {
+  background-color: #a7bcff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    border-radius: 10px;
+    width: 65%;
+    height: 80%;
+    display: flex;
+    overflow: hidden;
+    @include mobile {
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .sidebar {
+      flex: 1;
+      background-color: #3e3c61;
+      overflow-y: auto;
+
+      @include mobile {
+        flex: 0 0 35%;
+      }
+
+      .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        justify-content: space-between;
+        background-color: #2f2d52;
+        padding: 10px;
+        color: #ddddf7;
+
+        .logo {
+          font-weight: bold;
+          font-size: 2.5rem;
+
+          @include mobile {
+            font-size: 2rem;
+          }
+        }
+
+        .user {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          width: 100%;
+
+          img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #2f2d52;
+            flex-shrink: 0;
+          }
+
+          span {
+            font-size: 1.8rem;
+            @include mobile {
+              font-size: 1.5rem;
+            }
+          }
+
+          button {
+            background-color: #5d5b8d;
+            margin-left: auto;
+            border-radius: 3px;
+            border: none;
+            outline: none;
+            padding: 5px;
+            transition: all 0.3s ease-in-out;
+            color: #ddddf7;
+            font-size: 1.5rem;
+            cursor: pointer;
+
+            @include mobile {
+              font-size: 1.3rem;
+            }
+
+            &:hover {
+              color: #5d5b8d;
+              background-color: #ddddf7;
+            }
+          }
+        }
+      }
+
+      .search {
+        border-bottom: 1px solid gray;
+
+        .searchForm {
+          padding: 10px;
+
+          input {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: rgb(222, 222, 222);
+            font-size: 1.2rem;
+            &::placeholder {
+              color: lightgray;
+            }
+          }
+        }
+      }
+
+      // .chats {
+      //   overflow-y: auto;
+      // }
+
+      .userChat {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.803);
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: #2f2d52;
+        }
+
+        img {
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .userChatInfo {
+          span {
+            font-size: 1.3rem;
+            font-weight: 500;
+          }
+
+          p {
+            font-size: 1.1rem;
+            color: rgba(211, 211, 211, 0.82);
+          }
+        }
+      }
+    }
+
+    .chat {
+      flex: 2;
+      overflow-y: auto;
+
+      @include mobile {
+        flex: 0 0 65%;
+      }
+
+      .chatInfo {
+        height: 50px;
+        background-color: #5d5b8d;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        span {
+          font-size: 2rem;
+          margin-left: 10px;
+          color: rgb(222, 222, 222);
+
+          @include mobile {
+            font-size: 1.8rem;
+          }
+        }
+      }
+
+      .messages {
+        font-size: 1.2rem;
+        background-color: #ddddf7;
+        padding: 10px;
+        height: calc(100% - 100px);
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        .message {
+          display: flex;
+          gap: 20px;
+          margin-bottom: 20px;
+
+          @include mobile {
+            gap: 5px;
+          }
+
+          .messageInfo {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            color: rgba(128, 128, 128, 0.62);
+            font-size: 1.8rem;
+            font-weight: 300;
+
+            img {
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+          }
+
+          .messageContent {
+            padding-top: 15px;
+            max-width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+
+            p {
+              background-color: white;
+              padding: 10px;
+              border-radius: 0px 10px 10px 10px;
+              // max-width: max-content;
+              font-size: 1.2rem;
+              @include mobile {
+                padding: 6px;
+                font-size: 1rem;
+              }
+              font-weight: 100;
+            }
+
+            img {
+              width: 150px;
+            }
+          }
+
+          &.owner {
+            flex-direction: row-reverse;
+
+            .messageContent {
+              p {
+                background-color: #8da4f1;
+                color: white;
+                border-radius: 10px 0px 10px 10px;
+              }
+            }
+          }
+        }
+      }
+
+      .input {
+        height: 50px;
+        background-color: white;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input {
+          width: 100%;
+          border: none;
+          outline: none;
+          color: #2f2d52;
+          font-size: 1.8rem;
+
+          @include mobile {
+            font-size: 1.2rem;
+          }
+
+          &::placeholder {
+            color: rgb(145, 145, 145);
+          }
+        }
+
+        .send {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          img {
+            height: 32px;
+            @include mobile {
+              height: 25px;
+            }
+            cursor: pointer;
+          }
+
+          button {
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            font-size: 1rem;
+            background-color: #8da4f1;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+            @include mobile {
+              padding: 6px 8px;
+            }
+
+            &:hover {
+              background-color: #97a9e4;
+            }
+          }
+        }
+      }
+    }
+  }
+}
